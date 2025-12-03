@@ -1,0 +1,160 @@
+# Modelo de Dominio Principal: Sistema de Asignación de Salones
+
+## Introducción
+
+Este documento describe el **modelo de dominio principal** del Sistema de Asignación de Salones.  
+El objetivo es mostrar las entidades (clases) más importantes del sistema, sus atributos y cómo se relacionan entre sí para soportar:
+
+- La gestión de usuarios y roles  
+- La gestión académica (programas, grupos, asignaturas, períodos)  
+- La gestión de infraestructura (salones, recursos)  
+- La disponibilidad de profesores  
+- Las asignaciones de clases en salones  
+- El registro de conflictos de horario  
+
+---
+
+## Diagrama del Modelo de Dominio
+
+> Ajusta la ruta de la imagen según el nombre real del archivo en tu repositorio.
+
+```md
+![Modelo de dominio principal](../modelo_dominio_principal.png)
+classDiagram
+    class Usuario {
+        +int id
+        +string nombre
+        +string email
+        +string passwordHash
+        +bool activo
+    }
+
+    class Rol {
+        +int id
+        +string nombre
+    }
+
+    class UsuarioRol {
+        +int usuario_id
+        +int rol_id
+    }
+
+    class Programa {
+        +int id
+        +string nombre
+        +string facultad
+    }
+
+    class Permiso {
+        +int id
+        +string nombre
+        +string codigo
+    }
+
+    class Asignatura {
+        +int id
+        +string codigo
+        +string nombre
+        +int creditos
+    }
+
+    class Grupo {
+        +int id
+        +string codigo
+        +int semestre
+        +int numEstudiantes
+        +int programa_id
+    }
+
+    class GrupoAsignatura {
+        +int id
+        +int grupo_id
+        +int asignatura_id
+    }
+
+    class Profesor {
+        +int id
+        +int usuario_id
+        +string codigo
+        +string titulo
+        +string tipoContratacion
+    }
+
+    class DisponibilidadProfesor {
+        +int id
+        +int profesor_id
+        +string diaSemana
+        +time horaInicio
+        +time horaFin
+        +string jornada
+    }
+
+    class PeriodoAcademico {
+        +int id
+        +string nombre
+        +date fechaInicio
+        +date fechaFin
+    }
+
+    class TimeSlot {
+        +int id
+        +string diaSemana
+        +time horaInicio
+        +time horaFin
+        +string jornada
+    }
+
+    class Salon {
+        +int id
+        +string codigo
+        +int capacidad
+        +string tipo
+        +string ubicacion
+    }
+
+    class Recurso {
+        +int id
+        +string nombre
+    }
+
+    class SalonRecurso {
+        +int salon_id
+        +int recurso_id
+    }
+
+    class Asignacion {
+        +int id
+        +int grupoAsignatura_id
+        +int profesor_id
+        +int salon_id
+        +int timeSlot_id
+        +int periodo_id
+        +string estado
+    }
+
+    class ConflictoHorario {
+        +int id
+        +string tipoConflicto
+        +string descripcion
+    }
+
+    Usuario "1" --> "0..1" Profesor : tiene
+    Usuario "1" --> "0..*" UsuarioRol
+    Rol "1" --> "0..*" UsuarioRol
+
+    Programa "1" --> "0..*" Grupo
+    Grupo "1" --> "0..*" GrupoAsignatura
+    Asignatura "1" --> "0..*" GrupoAsignatura
+
+    Profesor "1" --> "0..*" DisponibilidadProfesor
+
+    PeriodoAcademico "1" --> "0..*" Asignacion
+    TimeSlot "1" --> "0..*" Asignacion
+    Salon "1" --> "0..*" Asignacion
+    GrupoAsignatura "1" --> "0..*" Asignacion
+    Profesor "1" --> "0..*" Asignacion
+
+    Salon "1" --> "0..*" SalonRecurso
+    Recurso "1" --> "0..*" SalonRecurso
+
+    Asignacion "1" --> "0..*" ConflictoHorario
