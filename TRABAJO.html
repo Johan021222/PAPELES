@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guion Técnico — Sistema de Asignación de Salones</title>
+  <style>
+    :root{
+      --bg:#0b0f14; --panel:#10161e; --muted:#8aa0b3; --text:#e8f0f7; --acc:#5eead4; --acc2:#93c5fd; --chip:#1e293b;
+      --card:#0f172a; --border:#233044; --glow:0 10px 30px rgba(94,234,212,.2);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:radial-gradient(1200px 800px at 80% -10%,rgba(94,234,212,.08),transparent),
+      radial-gradient(900px 600px at -10% 120%,rgba(147,197,253,.08),transparent),var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+    a{color:var(--acc2);text-decoration:none}
+    .wrap{max-width:1200px;margin:auto;padding:28px}
+    header{display:flex;gap:24px;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .brand{font-size:clamp(22px,2.3vw,32px);font-weight:800;letter-spacing:.3px}
+    .subtitle{color:var(--muted);font-weight:500}
+    .grid{display:grid;grid-template-columns:280px 1fr;gap:28px}
+    @media (max-width:960px){.grid{grid-template-columns:1fr}}
+    nav{position:sticky;top:16px;background:linear-gradient(180deg,rgba(255,255,255,.02),transparent),var(--panel);border:1px solid var(--border);border-radius:16px;padding:16px}
+    nav h3{margin:.1rem 0 8px 0;font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+    nav a{display:block;padding:10px 12px;border-radius:10px;color:#cfe6ff}
+    nav a:hover{background:#0b1220}
+    .section{background:linear-gradient(180deg,rgba(255,255,255,.02),transparent),var(--panel);border:1px solid var(--border);border-radius:18px;padding:24px;margin-bottom:22px;box-shadow:var(--glow)}
+    .section h2{margin-top:0;font-size:clamp(18px,2vw,24px)}
+    .lead{color:#d6e7f7;line-height:1.6}
+    .list{display:grid;gap:8px;padding-left:18px}
+    .list li{margin-left:6px}
+    code,pre{background:#0a1322;color:#e0f2ff;border:1px solid #17304c;border-radius:12px}
+    code{padding:2px 6px}
+    pre{padding:14px;overflow:auto}
+    table{width:100%;border-collapse:collapse}
+    th,td{border-bottom:1px solid var(--border);padding:10px;text-align:left}
+    th{color:#c9e5ff}
+    .muted{color:var(--muted)}
+    footer{margin:36px 0 12px;color:var(--muted);text-align:center}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="brand">Sistema de Asignación de Salones — Guion Técnico</div>
+        <div class="subtitle">Introducción · Arquitectura · Tecnologías · Lenguaje · Framework · Base de Datos (Supabase)</div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <nav>
+        <h3>Secciones</h3>
+        <a href="#introduccion">Introducción</a>
+        <a href="#arquitectura">Arquitectura del Sistema</a>
+        <a href="#tecnologias">Tecnologías</a>
+        <a href="#lenguaje">Lenguaje de Programación</a>
+        <a href="#framework">Framework</a>
+        <a href="#base-datos">Base de Datos (Supabase)</a>
+      </nav>
+
+      <main>
+        <section id="introduccion" class="section">
+          <h2>Introducción</h2>
+          <p class="lead">
+            El <strong>Sistema de Asignación de Salones</strong> integra metodologías <em>DevOps</em> y <em>Scrum</em>, asegurando control de calidad (TDD, CI/CD) y manteniendo una estructura modular. Permite la gestión completa de <strong>grupos, salones y profesores</strong>, con asignación <strong>automática</strong> y <strong>manual</strong> de horarios.
+          </p>
+        </section>
+
+        <section id="arquitectura" class="section">
+          <h2>Arquitectura del Sistema</h2>
+          <p>El sistema utiliza una arquitectura <strong>multicapa y orientada a servicios</strong>, separando presentación, aplicación, dominio y datos. Se fundamenta en principios <strong>SOLID</strong> y <strong>Clean Architecture</strong>.</p>
+        </section>
+
+        <section id="tecnologias" class="section">
+          <h2>Tecnologías</h2>
+          <ul class="list">
+            <li><strong>Backend:</strong> Laravel 11 (PHP 8.x).</li>
+            <li><strong>Frontend:</strong> Vite, TailwindCSS, Vue o Blade.</li>
+            <li><strong>Base de datos:</strong> Supabase (PostgreSQL gestionado en la nube).</li>
+            <li><strong>Infraestructura:</strong> Docker + Nginx.</li>
+            <li><strong>DevOps:</strong> GitHub Actions + Render para CI/CD.</li>
+          </ul>
+        </section>
+
+        <section id="lenguaje" class="section">
+          <h2>Lenguaje de Programación</h2>
+          <p>El lenguaje principal es <strong>PHP 8.x</strong> para backend y <strong>JavaScript (ES6+)</strong> para frontend, junto con HTML5 y CSS3. Además, Supabase permite ejecutar <strong>SQL</strong> y <strong>RPC functions</strong> en su base PostgreSQL.</p>
+        </section>
+
+        <section id="framework" class="section">
+          <h2>Framework</h2>
+          <p><strong>Laravel</strong> es el marco de trabajo base, ofreciendo MVC, ORM Eloquent y soporte para pruebas automatizadas, autenticación y despliegue ágil.</p>
+        </section>
+
+        <section id="base-datos" class="section">
+          <h2>Base de Datos — Supabase</h2>
+          <p>La base de datos del sistema está implementada en <strong>Supabase</strong>, una plataforma <em>backend as a service</em> basada en <strong>PostgreSQL</strong>, que combina almacenamiento estructurado, autenticación y APIs RESTful automáticas.</p>
+          <ul class="list">
+            <li><strong>Modelo:</strong> relacional y normalizado (3FN), con entidades: <em>users, roles, teachers, groups, rooms, availabilities, assignments, semesters, audit_logs</em>.</li>
+            <li><strong>Ventajas de Supabase:</strong> API instantánea, autenticación integrada, funciones almacenadas (RPC), triggers, y compatibilidad total con ORM Eloquent vía conexión PostgreSQL.</li>
+            <li><strong>Integración con Laravel:</strong> conexión directa a través de <code>DB_CONNECTION=pgsql</code>, sin modificar los modelos.</li>
+            <li><strong>Seguridad:</strong> uso de Row Level Security (RLS) para proteger datos sensibles y asignaciones específicas por usuario.</li>
+          </ul>
+          <pre><code># Ejemplo de configuración .env
+DB_CONNECTION=pgsql
+DB_HOST=db.supabase.co
+DB_PORT=5432
+DB_DATABASE=sistema_salones
+DB_USERNAME=postgres
+DB_PASSWORD=tu_clave_segura</code></pre>
+        </section>
+
+        <footer class="muted">© Guion Técnico — Sistema de Asignación de Salones (Supabase Edition)</footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
